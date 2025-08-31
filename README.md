@@ -52,5 +52,29 @@
       }
     }
   </script>
+
+<section id="signup" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #f0f0f0; border-radius: 8px;">
+  <h2>🎓 Join Our SAT English Class</h2>
+  <p>Fill out the form below and we'll get in touch with more details.</p>
+
+  <form id="signupForm">
+    <label for="name">Full Name:</label><br />
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="email">Email Address:</label><br />
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="grade">Grade / SAT Target Score:</label><br />
+    <input type="text" id="grade" name="grade" style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="message">Questions or Comments:</label><br />
+    <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px;"></textarea><br /><br />
+
+    <button type="submit" style="background-color: #4A90E2; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    <p id="formResult" style="margin-top: 10px;"></p>
+  </form>
+</section>
+
+  
 </body>
 </html>
