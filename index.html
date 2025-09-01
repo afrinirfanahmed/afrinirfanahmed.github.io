@@ -94,4 +94,137 @@
       background: #4A90E2;
       color: white;
       padding: 40px 20px;
-      text-
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .modules {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .module {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 240px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    /* About Section */
+    #about img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #about .about-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    #about .about-wrapper > div {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    ul {
+      margin-top: 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SAT English Made Easy</h1>
+
+  <!-- 🔹 Tab Buttons -->
+  <div class="tab-buttons">
+    <button onclick="showTab('home')">Home</button>
+    <button onclick="showTab('about')">About Me</button>
+  </div>
+
+  <!-- 🔹 Tab Content: Home -->
+  <div id="home" class="tab-content active">
+    <section class="hero">
+      <h2>SAT English Preparation</h2>
+      <p>Master Reading, Writing & Grammar for top scores</p>
+      <button onclick="document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });">Get Started</button>
+    </section>
+
+    <section id="modules" class="modules">
+      <div class="module"><h3>Reading</h3><p>Practice reading passages with comprehension questions.</p></div>
+      <div class="module"><h3>Writing</h3><p>Analyze arguments, improve clarity and coherence.</p></div>
+      <div class="module"><h3>Grammar</h3><p>Brush up on rules for punctuation, syntax, and usage.</p></div>
+    </section>
+
+    <section id="signup" style="max-width: 600px; margin: 0 auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+      <h2>🎓 Join Our SAT English Class</h2>
+      <p>Fill out the form below and we'll get in touch with more details.</p>
+
+      <form action="https://formspree.io/f/mzzagnqg" method="POST">
+        <label>Full Name:</label>
+        <input type="text" name="name" required />
+
+        <label>Email:</label>
+        <input type="email" name="email" required />
+
+        <label>Grade / SAT Target Score:</label>
+        <input type="text" name="grade" />
+
+        <label>Message:</label>
+        <textarea name="message" rows="4"></textarea>
+
+        <!-- Optional CAPTCHA already enabled via Formspree dashboard -->
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- 🔹 Tab Content: About -->
+  <div id="about" class="tab-content">
+    <h2>About Me</h2>
+
+    <div class="about-wrapper">
+      <!-- 👤 Image -->
+      <img src="picturepdeskto[.jpg" alt="Hera" />
+
+      <!-- 📝 Text -->
+      <div>
+        <p>Hello! I'm <strong>Hera</strong>, a passionate and dedicated <strong>SAT English tutor</strong> with over <strong>10 years of experience</strong> helping students excel in the Reading, Writing, and Language sections of the SAT.</p>
+
+        <p>My teaching approach is student-focused and results-driven. I specialize in:</p>
+        <ul>
+          <li>Decoding SAT question patterns</li>
+          <li>Expanding academic vocabulary</li>
+          <li>Sharpening grammar and syntax skills</li>
+          <li>Building confidence through strategic practice</li>
+          <li>Teaching time-saving strategies for higher efficiency</li>
+        </ul>
+
+        <p>Over the past decade, I've worked with hundreds of students—many of whom went on to achieve <strong>top percentile scores</strong> and earn admission to prestigious universities in the U.S. and beyond.</p>
+
+        <p>If you're ready to unlock your full potential and take your SAT English skills to the next level, I’d love to help you on your journey. <strong>Let’s get started!</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 JavaScript: Tab Switching -->
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
