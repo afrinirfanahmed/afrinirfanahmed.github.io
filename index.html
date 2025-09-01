@@ -9,26 +9,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #f0f4f8;
+      --text: #333;
+      --card-bg: #ffffff;
+      --primary: #4a90e2;
+      --button-text: #fff;
+      --button-bg: #4a90e2;
+      --button-hover: #3a78c2;
+    }
+
+    body.dark-mode {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+      --card-bg: #2a2a2a;
+      --primary: #6fb1fc;
+      --button-text: #fff;
+      --button-bg: #3a78c2;
+      --button-hover: #4a90e2;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 40px 20px;
-      background-color: #f0f4f8;
-      color: #333;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     h1, h2 {
-      color: #2c3e50;
+      color: var(--text);
     }
 
-    /* Banner */
     h1 {
-      background: linear-gradient(to right, #4a90e2, #6fb1fc);
+      background: linear-gradient(to right, var(--primary), var(--button-hover));
       color: white;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
+      margin-bottom: 15px;
+    }
+
+    /* Dark mode toggle button container */
+    #darkModeContainer {
+      text-align: right;
       margin-bottom: 30px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #darkModeToggle {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    #darkModeToggle:hover {
+      background-color: #555;
     }
 
     .tab-buttons {
@@ -39,26 +83,28 @@
     .tab-buttons button {
       padding: 10px 24px;
       margin: 0 8px;
-      background-color: #4a90e2;
-      color: white;
+      background-color: var(--button-bg);
+      color: var(--button-text);
       border: none;
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      font-weight: 600;
     }
 
     .tab-buttons button:hover {
-      background-color: #3a78c2;
+      background-color: var(--button-hover);
     }
 
     .tab-content {
       display: none;
-      background: white;
+      background: var(--card-bg);
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       max-width: 1000px;
       margin: 0 auto;
+      transition: background-color 0.3s;
     }
 
     .tab-content.active {
@@ -73,30 +119,48 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 16px;
+      background: white;
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background: #444;
+      color: white;
+      border: 1px solid #666;
     }
 
     button[type="submit"] {
-      background-color: #4a90e2;
-      color: white;
+      background-color: var(--button-bg);
+      color: var(--button-text);
       padding: 12px 24px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
     }
 
     button[type="submit"]:hover {
-      background-color: #3a78c2;
+      background-color: var(--button-hover);
     }
 
     /* Hero + Modules styling */
     .hero {
-      background: #4A90E2;
+      background: var(--primary);
       color: white;
       padding: 40px 20px;
       text-align: center;
       border-radius: 8px;
       margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .hero {
+      background: var(--button-hover);
     }
 
     .modules {
@@ -108,13 +172,14 @@
     }
 
     .module {
-      background: #ffffff;
+      background: var(--card-bg);
       border: 1px solid #ddd;
       border-radius: 8px;
       width: 240px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       text-align: center;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     /* About Section */
@@ -122,6 +187,11 @@
       width: 200px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    body.dark-mode #about img {
+      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
     }
 
     #about .about-wrapper {
@@ -145,6 +215,11 @@
 <body>
 
   <h1>SAT English Made Easy</h1>
+
+  <!-- Dark mode toggle button -->
+  <div id="darkModeContainer">
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </div>
 
   <!-- 🔹 Tab Buttons -->
   <div class="tab-buttons">
@@ -183,7 +258,6 @@
         <label>Message:</label>
         <textarea name="message" rows="4"></textarea>
 
-        <!-- Optional CAPTCHA already enabled via Formspree dashboard -->
         <button type="submit">Submit</button>
       </form>
     </section>
@@ -199,7 +273,7 @@
 
       <!-- 📝 Text -->
       <div>
-        <p>Hello! I'm <strong>Hera</strong>, a passionate and dedicated <strong>SAT English tutor</strong> with over <strong>10 years of experience</strong> helping students excel in the Reading, Writing, and Language sections of the SAT.</p>
+        <p>Hello! I'm <strong>Hera</strong>, a passionate and dedicated <strong>SAT English tutor</strong> with good amount of experience</strong> helping students excel in the Reading, Writing, and Language sections of the SAT.</p>
 
         <p>My teaching approach is student-focused and results-driven. I specialize in:</p>
         <ul>
@@ -210,19 +284,23 @@
           <li>Teaching time-saving strategies for higher efficiency</li>
         </ul>
 
-        <p>Over the past decade, I've worked with hundreds of students—many of whom went on to achieve <strong>top percentile scores</strong> and earn admission to prestigious universities in the U.S. and beyond.</p>
+        <p>Over the past decade, I've worked with students—many of whom went on to achieve <strong>top percentile scores</strong> and earn admission to prestigious universities in the U.S. and beyond.</p>
 
         <p>If you're ready to unlock your full potential and take your SAT English skills to the next level, I’d love to help you on your journey. <strong>Let’s get started!</strong></p>
       </div>
     </div>
   </div>
 
-  <!-- 🔹 JavaScript: Tab Switching -->
+  <!-- 🔹 JavaScript: Tab Switching & Dark Mode -->
   <script>
     function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
     }
   </script>
 
