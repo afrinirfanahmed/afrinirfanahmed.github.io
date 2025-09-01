@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAT English Prep</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    .hero { background: #4A90E2; color: white; padding: 40px 20px; text-align: center; }
+    .modules { display: flex; flex-wrap: wrap; justify-content: center; margin: 20px; }
+    .module { background: #f7f7f7; border: 1px solid #ddd; border-radius: 8px; width: 200px; margin: 10px; padding: 20px; text-align: center; }
+    button { background: #4A90E2; color: white; border: none; border-radius: 4px; padding: 10px 20px; cursor: pointer; }
+    .quiz { max-width: 400px; margin: 40px auto; padding: 20px; background: #fff; border: 1px solid #ccc; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>SAT English Preparation</h1>
+    <p>Master Reading, Writing & Grammar for top scores</p>
+    <button onclick="scrollToModules()">Get Started</button>
+  </section>
+
+  <section id="modules" class="modules">
+    <div class="module"><h3>Reading</h3><p>Practice reading passages with comprehension questions.</p></div>
+    <div class="module"><h3>Writing</h3><p>Analyze arguments, improve clarity and coherence.</p></div>
+    <div class="module"><h3>Grammar</h3><p>Brush up on rules for punctuation, syntax, and usage.</p></div>
+  </section>
+
+  <section class="quiz">
+    <h3>Mini Quiz</h3>
+    <p>Which sentence is grammatically correct?</p>
+    <label><input type="radio" name="q1" value="A"> A) She and I went to the store.</label><br/>
+    <label><input type="radio" name="q1" value="B"> B) Me and her went to the store.</label><br/>
+    <button onclick="checkQuiz()">Submit</button>
+    <p id="quizResult"></p>
+  </section>
+
+  <script>
+    function scrollToModules() {
+      document.getElementById('modules').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function checkQuiz() {
+      const selected = document.querySelector('input[name="q1"]:checked');
+      const result = document.getElementById('quizResult');
+      if (!selected) {
+        result.textContent = 'Please select an option.';
+      } else if (selected.value === 'A') {
+        result.textContent = 'Correct! Great job.';
+      } else {
+        result.textContent = 'Oops! That’s not right. Try again.';
+      }
+    }
+  </script>
+
+<section id="signup" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #f0f0f0; border-radius: 8px;">
+  <h2>🎓 Join Our SAT English Class</h2>
+  <p>Fill out the form below and we'll get in touch with more details.</p>
+
+  <form id="signupForm">
+    <label for="name">Full Name:</label><br />
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="email">Email Address:</label><br />
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="grade">Grade / SAT Target Score:</label><br />
+    <input type="text" id="grade" name="grade" style="width: 100%; padding: 8px;"><br /><br />
+
+    <label for="message">Questions or Comments:</label><br />
+    <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px;"></textarea><br /><br />
+
+    <button type="submit" style="background-color: #4A90E2; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    <p id="formResult" style="margin-top: 10px;"></p>
+  </form>
+</section>
+
+  
+</body>
+</html>
