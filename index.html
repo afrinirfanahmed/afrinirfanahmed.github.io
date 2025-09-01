@@ -56,22 +56,57 @@
   <h2>🎓 Join Our SAT English Class</h2>
   <p>Fill out the form below and we'll get in touch with more details.</p>
 
-  <form id="signupForm">
-    <label for="name">Full Name:</label><br />
-    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br /><br />
+<form id="signupForm">
+  <label>Full Name:</label><br />
+  <input type="text" name="name" required /><br /><br />
+  
+  <label>Email:</label><br />
+  <input type="email" name="email" required /><br /><br />
+  
+  <label>Grade / SAT Target Score:</label><br />
+  <input type="text" name="grade" /><br /><br />
+  
+  <label>Message:</label><br />
+  <textarea name="message" rows="4"></textarea><br /><br />
+  
+  <button type="submit">Submit</button>
+  <p id="formResult"></p>
+</form>
 
-    <label for="email">Email Address:</label><br />
-    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br /><br />
+<script>
+  const form = document.getElementById('signupForm');
+  const result = document.getElementById('formResult');
 
-    <label for="grade">Grade / SAT Target Score:</label><br />
-    <input type="text" id="grade" name="grade" style="width: 100%; padding: 8px;"><br /><br />
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      grade: form.grade.value,
+      message: form.message.value
+    };
 
-    <label for="message">Questions or Comments:</label><br />
-    <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px;"></textarea><br /><br />
+    fetch('https://script.google.com/macros/s/AKfycbwEE99T-_QFc8BteInWODqz0dDyiEy9WVXNsiUwHaMQhsMe1-RBGUapfJ5u3xtKJyHA0g/exec', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        result.textContent = "Thanks! We'll be in touch soon.";
+        form.reset();
+      } else {
+        result.textContent = "There was an error. Please try again.";
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      result.textContent = "Submission failed. Please try again.";
+    });
+  });
+</script>
 
-    <button type="submit" style="background-color: #4A90E2; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
-    <p id="formResult" style="margin-top: 10px;"></p>
-  </form>
 </section>
 
   
