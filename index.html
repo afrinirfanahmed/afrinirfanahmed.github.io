@@ -56,56 +56,22 @@
   <h2>🎓 Join Our SAT English Class</h2>
   <p>Fill out the form below and we'll get in touch with more details.</p>
 
-<form id="signupForm">
+<form action="https://formspree.io/f/mzzagnqg" method="POST">
   <label>Full Name:</label><br />
   <input type="text" name="name" required /><br /><br />
-  
+
   <label>Email:</label><br />
   <input type="email" name="email" required /><br /><br />
-  
+
   <label>Grade / SAT Target Score:</label><br />
   <input type="text" name="grade" /><br /><br />
-  
+
   <label>Message:</label><br />
   <textarea name="message" rows="4"></textarea><br /><br />
-  
+
   <button type="submit">Submit</button>
-  <p id="formResult"></p>
 </form>
 
-<script>
-  const form = document.getElementById('signupForm');
-  const result = document.getElementById('formResult');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      grade: form.grade.value,
-      message: form.message.value
-    };
-
-    fetch(https://script.google.com/macros/s/AKfycbwEE99T-_QFc8BteInWODqz0dDyiEy9WVXNsiUwHaMQhsMe1-RBGUapfJ5u3xtKJyHA0g/exec, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        result.textContent = "Thanks! We'll be in touch soon.";
-        form.reset();
-      } else {
-        result.textContent = "There was an error. Please try again.";
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      result.textContent = "Submission failed. Please try again.";
-    });
-  });
-</script>
 
 </section>
 
